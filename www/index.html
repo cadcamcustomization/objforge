@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, minimum-scale=1.0, maximum-scale=1.0">
+    <title>Forge Model Derivative API sample</title>
+    <link rel="stylesheet" href="/css/jstree.style.min.css" />
+    <link rel="stylesheet" href="/css/bootstrap.min.css">
+    <!--<link rel="stylesheet" href="https://developer-stg.api.autodesk.com/viewingservice/v1/viewers/style.css"-->
+    <!--type="text/css">-->
+    <script language="JavaScript" src="/js/jquery.min.js"></script>
+    <script language="JavaScript" src="/js/jquery.storageapi.min.js"></script>
+    <script language="JavaScript" src="/js/scripts.js"></script>
+    <script src="/js/jstree.js"></script>
+    <script src="/js/bootstrap.min.js"></script>
+
+    <!-- for the viewer -->
+    <script src="https://developer.api.autodesk.com/viewingservice/v1/viewers/three.min.js?v=v2.14"></script>
+    <!-- Last working version was 2.8
+      <script src="https://developer.api.autodesk.com/viewingservice/v1/viewers/viewer3D.js?v=v2.10"></script>
+      <link rel="stylesheet" href="https://developer.api.autodesk.com/viewingservice/v1/viewers/style.min.css?v=v2.10"/>
+    ?v=v2.10 -->
+    <script src="https://developer.api.autodesk.com/viewingservice/v1/viewers/viewer3D.js?v=v2.14"></script>
+    <link rel="stylesheet" href="https://developer.api.autodesk.com/viewingservice/v1/viewers/style.min.css?v=v2.14" />
+
+    <link rel="stylesheet" href="/css/index.css" />
+</head>
+<body>
+    <div class="container">
+        <nav class="navbar navbar-default">
+            <div class="container-fluid">
+                <h1 class="lmv-sidebar-menu-heading" style="color: black;font-size: 25px;">OBJ Downloader by CAD-CAM Customization Solutions</h1>
+            </div>
+        </nav>
+
+        <div class="jumbotron">
+            <div class="row">
+                <div class="col-sm-3" style="height: 0px">
+                    <div id="wipVsStorage" class="btn btn-primary active" data-toggle="button" aria-pressed="false" autocomplete="off" style="font-size: 10pt; visibility: hidden;">
+                        <span id="wipVsStorageText">Use WIP (instead of Storage)</span>
+                    </div>
+                </div>
+            </div>
+
+
+            <div class="row" style="height: 60px;">
+                <div class="navbar-header" style="margin:15px">
+                    <a href="#" id="authenticate" class="btn btn-primary">
+                        <span class="glyphicon glyphicon-user"></span>
+                        Authenticate
+                    </a>
+                </div>
+                <div class="navbar-header" style="margin:15px">
+                    <a id="downloadExport" class="btn btn-primary" style="pointer-events: none;">
+                        <span class="glyphicon glyphicon-save-file"></span>
+                        Generate OBJ
+                    </a>
+                </div>
+            </div>
+            <div class="row" style="height: 40px; margin:2px">
+                <h5>Instructions: 1. Authenticate 2. Navigate to the Model using tree 3. Click on Model to Opne in Viewer 4. Click on Generate OBJ</h5>
+            </div>
+
+
+            <div class="row" style="height: 70px">
+                <div class="col-sm-12" style="height: 40px">
+                    <div id="progressInfo" class="btn btn-info btn-primary btn-block" style="font-size: 20pt">
+                        <span id="progressInfoText">Check Process Status Here</span>
+                        <span id="progressInfoIcon"></span>
+                    </div>
+                </div>
+            </div>
+            <div class="row" style="background: white;">
+                <div class="col-sm-3 forgeTreeContainer">
+                    <div id="forgeFiles">
+                    </div>
+
+                </div>
+                <div class="col-sm-9 forgeViewer">
+                    <div id="forgeViewer"></div>
+                </div>
+            </div>
+
+            <div class="row" style="display: none">
+                <div class="col-sm-4 forgeTreeContainer" style="position: relative; visibility: hidden">
+                    <div id="forgeHierarchy" class="forgeControl"></div>
+                    <div id="forgeFileOptions" class="forgeControlContainer" style="height: 0px; overflow: hidden;">
+                        <div style="display: inline-block">
+                            <select id="forgeFormats" class="input-small form-control" style="display: none; width: 90px">
+                            </select>
+                        </div>
+
+                        <div style="display: inline-block">
+                        </div>
+
+                        <div style="display: none">
+                            <a id="deleteManifest" class="btn btn-warning">
+                                <span class="glyphicon glyphicon-trash"></span>
+                                Delete
+                            </a>
+                        </div>
+                    </div>
+                    <div id="forgeProperties" class="forgeControl"></div>
+                </div>
+
+                <div id="forgeUpload" class="forgeControlContainer">
+                    <div style="display: none">
+                        <a id="uploadFile" class="btn btn-warning" disabled>
+                            <span class="glyphicon glyphicon-open-file"></span>
+                            Upload attachment
+                            </a>
+                    </div>
+                    <input type="file" id="forgeUploadHidden" name="file" style="visibility: hidden" />
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+    <iframe id="fusionLoader" width="1" height="1" style="visibility: hidden"></iframe>
+
+</body>
+</html>
